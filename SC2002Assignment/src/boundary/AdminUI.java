@@ -1,8 +1,10 @@
 package boundary;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import control.AdminController;
+import control.CineplexController;
 import control.MovieController;
 import control.PricingSchemeController;
 import control.ShowTimeController;
@@ -52,12 +54,13 @@ public class AdminUI {
         System.out.println("Hi " + admin.getName());
         System.out.println("===== What would you like to do? =====");
 
-        while (choice != 5) {
+        while (choice != 6) {
             System.out.println("1. Modify Movie Listings");
             System.out.println("2. Modify Cinema Showtimes");
             System.out.println("3. Modify Ticket Pricing Scheme");
             System.out.println("4. List Top 5 Movies");
-            System.out.println("5. Exit");
+            System.out.println("5. Modify Cineplex");
+            System.out.println("6. Exit");
             System.out.println("Enter your choice:");
 
             choice = input.nextInt();
@@ -74,6 +77,9 @@ public class AdminUI {
                     break;
                 case 4:
                     displayAdminListTopMovieServicesUI();
+                    break;
+                case 5:
+                    displayCineplexServicesUI();
                     break;
                 default:
                     break;
@@ -325,6 +331,50 @@ public class AdminUI {
                 case 2:
                     try {
                         MovieController.listTopMovieBySales();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+    public static void displayCineplexServicesUI() {
+        int choice = 0;
+                
+        System.out.println("===== What would you like to do? =====");
+        
+        while (choice != 4) {
+            System.out.println("1. Add cineplex");
+            System.out.println("2. Display cineplex");
+            System.out.println("3. Remove cineplex");
+            System.out.println("4. Exit");
+            System.out.println("Enter your choice:");
+
+            choice = input.nextInt();
+            
+            switch (choice) {
+                case 1:
+                    try {
+                        CineplexController.addCineplex();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                    
+                case 2:
+                    try {
+                        CineplexController.displayCineplex();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                    
+                case 3:
+                    try {
+                        CineplexController.removeCineplex();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
