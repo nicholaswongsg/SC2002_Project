@@ -13,6 +13,7 @@ public class MainUI {
 	// Program entry
 	
 	public static void main(String[] args) throws Exception {
+	    
 		Scanner input = new Scanner(System.in);
 		int choice = 0;
 		
@@ -61,29 +62,35 @@ public class MainUI {
 //            }
 //        }
 
-		
 		System.out.println("===== Welcome to MOBLIMA =====");
-	
-		while (choice != 3) {
-			System.out.println("1. Administrator");
-			System.out.println("2. Movie Goer");
-			System.out.println("3. Quit MOBLIMA");
-			System.out.println("Enter your choice:");
-			choice = input.nextInt();
+		boolean errorFlag = false;
+		do{
+		    System.out.println("1. Administrator");
+            System.out.println("2. Movie Goer");
+            System.out.println("3. Quit MOBLIMA");
+            System.out.println("Enter your choice:");
 
-			switch (choice) {
-			case 1:
-				AdminUI.displayAdminMainUI();
-				break;
-			case 2:
-				MovieGoerUI.displayMovieGoerMainUI();
-				break;
-			default:
-				System.out.println("Thank for using our MOBLIMA app!");
-				break;
-			}
-		}
-
+            if(input.hasNextInt()){
+	            choice = input.nextInt();
+	            errorFlag = true;
+	            
+	            switch (choice) {
+	                case 1:
+	                    AdminUI.displayAdminMainUI();
+	                    break;
+	                case 2:
+	                    MovieGoerUI.displayMovieGoerMainUI();
+	                    break;
+	                default:
+	                    System.out.println("Thank for using our MOBLIMA app!");
+	                    break;
+	                }
+	        }else{
+	            input.nextLine();
+	            System.out.println("Enter a valid Integer value");
+	        }
+	    }while(!errorFlag);
+		
 		input.close();
 
 	}
